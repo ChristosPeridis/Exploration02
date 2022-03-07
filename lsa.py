@@ -10,7 +10,7 @@ Original file is located at
 
 Import dependencies:
 """
-
+#%%
 from sklearn.decomposition import TruncatedSVD
 from scipy.sparse import rand
 from sklearn.metrics.pairwise import cosine_similarity
@@ -25,14 +25,14 @@ Generate a random binary 150x100 matrix (150 samples, 100 features):
 
 
 """
-
+#%%
 B = rand(150, 100, density=0.3, format='csr')
 B.data[:] = 1
 print("B shape: " + str(B.shape))
 print(B)
 
 """Generate a random binary query (1x100 vector):"""
-
+#%%
 query = rand(1, 100, density=0.3, format='csr')
 query.data[:] = 1
 print("Query shape: " + str(query.shape))
@@ -47,7 +47,7 @@ print(query)
 
 In this case k=5:
 """
-
+#%%
 trunc_SVD_model = TruncatedSVD(n_components=5)
 approx_B = trunc_SVD_model.fit_transform(B)
 print("Approximated B shape: " + str(approx_B.shape))
@@ -56,27 +56,27 @@ print("Approximated B shape: " + str(approx_B.shape))
 
 
 """
-
+#%%
 transformed_query = trunc_SVD_model.transform(query)
 print("Transformed query: " + str(transformed_query))
 print("Query shape: " + str(transformed_query.shape))
 print(transformed_query)
 
 """Compute cosine similarities between the transformed query and the column vectors of B:"""
-
+#%%
 similarities = cosine_similarity(approx_B, transformed_query)
 print("Similarities shape: " + str(similarities.shape))
 print(similarities)
 
 """Let's take the indexes of the n most similarity documents:"""
-
+#%%
 n=3
 indexes = np.argsort(similarities.flat)[-n:]
 print("Top n documents: " + str(indexes))
 print("Top n similarities: " + str(similarities.flat[indexes]))
 
 """How to convert corpus to TFIDF:"""
-
+#%%
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 
