@@ -21,7 +21,7 @@ Original file is located at
 #drive.mount("/content/drive")
 
 """###***pre-work2: set datasets***"""
-
+#%%
 data_path = "G:/My Drive/Colab Notebooks/21COP509/LabDatasets/"#"/content/drive/My Drive/Colab Notebooks/21COP509/LabDatasets/"
 #!ls "/content/drive/My Drive/Colab Notebooks/21COP509/LabDatasets/"
 
@@ -45,6 +45,8 @@ else:
   data_train_ratings = 'ArtsRatings_5000_train.txt'
   data_test_ratings = 'ArtsRatings_5000_test.txt'
 
+
+#%%
 """##**1.fit the LSA model**"""
 
 from numpy import array
@@ -199,6 +201,7 @@ trunc_SVD_model = TruncatedSVD(n_components=50)
 approx_Xtrain = trunc_SVD_model.fit_transform(Xtrain)
 print("Approximated Xtrain shape: " + str(approx_Xtrain.shape))
 
+#%%
 """##**2.evaluation**"""
 
 import numpy as np
